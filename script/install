@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+echo ""
+echo "  upper ^"
+echo "  Never ever update all your stuff on your own again."
+echo ""
+
+if test -d "$HOME/.upper"
+then
+    echo "  - $HOME/.upper directory already exists."
+    echo "    This directory is needed to install upper."
+    echo "    Overwrite the existing directory or cancel the installation? (o or c) > \c"
+    read overwrite_or_cancel
+
+    if [ "$overwrite_or_cancel" == "c" ]
+    then
+        exit 0
+    fi
+fi
+
+rm -rf "$HOME/.upper/"
+mkdir -p "$HOME/.upper"
+
+echo "  + A fresh $HOME/.upper directory has been created."
+echo ""
+echo "  Your upper installation is now fully functional, just add your first configuration."
+echo "  For some inspiration, check out https://github.com/fstoerkle/upper-examples"
+echo ""

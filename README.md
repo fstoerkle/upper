@@ -1,5 +1,5 @@
-upper
-=====
+upper ^
+=======
 
 Never ever update all your stuff on your own again.
 
@@ -11,9 +11,10 @@ Installation
 ```bash
 git clone git@github.com:fstoerkle/upper.git
 cd upper
-rake install
+script/install
 ```
 
+(The setup script and the whole setup process is heavily inspired by [Zach Holman](https://github.com/holman) and his creation [play](https://github.com/play/play)).
 
 Configuration
 -------------
