@@ -1,0 +1,4 @@
+{
+    "cmd": "aptitude update && aptitude safe-upgrade -y",
+    "hosts": [ "example.com" ]
+}
