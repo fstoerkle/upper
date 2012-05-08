@@ -6,7 +6,7 @@ require 'optparse'
 # TODO: config option to specify command which lets check if update was executed or not (and what was updated at all)
 
 class Updater
-    CONFIG_DIR = '.updates'
+    CONFIG_DIR = '.upper'
 
     def initialize(verbose=false)
         @base_dir = File.join Dir.home, CONFIG_DIR
