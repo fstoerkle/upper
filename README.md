@@ -1,7 +1,7 @@
 upper
 =====
 
-Never ever update all your stuff on your own.
+Never ever update all your stuff on your own again.
 
 *WARNING*: All this stuff is expiremental and has only very rudimentary functionality. Use at your own risk!
 
