@@ -19,7 +19,7 @@ script/install
 Configuration
 -------------
 upper puts all its configuration into the `$HOME/.upper` directory.
-Place a file for each update task you want upper to perform.
+Place a file for each update task you want upper to perform into that directory.
 A sample configuration looks like follows:
 ```json
 {
