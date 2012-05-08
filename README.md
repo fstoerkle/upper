@@ -20,14 +20,15 @@ Configuration
 -------------
 upper puts all its configuration into the `$HOME/.upper` directory.
 Place a file for each update task you want upper to perform into that directory.
-A sample configuration looks like follows:
+
+Learning by doing: the configuration to update `npm` on the servers `example.org` and `example.com` is as follows (yes, this is JSON):
 ```json
 {
     "cmd": "npm update",
     "hosts": [ "example.org", "example.com" ]
 }
 ```
-The `cmd` key is required while the `hosts` key is optional – if it is not provided, the command while be executed on your local machine.
+The `cmd` key is required while the `hosts` key is optional – if it is not provided, the given command while be executed on your local machine.
 
 
 License
