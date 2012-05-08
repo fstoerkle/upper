@@ -30,6 +30,9 @@ Learning by doing: the configuration to update `npm` on the servers `example.org
 ```
 The `cmd` key is required while the `hosts` key is optional – if it is not provided, the given command while be executed on your local machine.
 
+See the [examples directory](https://github.com/fstoerkle/upper/tree/master/examples) for more configuration examples.
+Feel free to submit your own ideas as pull requests.
+
 
 License
 -------
