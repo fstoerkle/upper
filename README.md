@@ -17,7 +17,7 @@ rake install
 
 Configuration
 -------------
-upper puts all its configuration into the .upper directory in your `$HOME` directory.
+upper puts all its configuration into the `$HOME/.upper` directory.
 Place a file for each update task you want upper to perform.
 A sample configuration looks like follows:
 ```json
