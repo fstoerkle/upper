@@ -31,4 +31,4 @@ The `cmd` key is required while the `hosts` key is optional – if it is not pro
 
 License
 -------
-MIT license, see [LICENSE.md](https://github.com/fstoerkle/upper/blob/master/LICENSE.md)
+[MIT License](https://github.com/fstoerkle/upper/blob/master/LICENSE.md)
