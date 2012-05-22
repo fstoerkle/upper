@@ -28,6 +28,8 @@ class Updater
     end
 
     def start!
+        puts "Starting updates"
+
         @tasks.each do |name, config|
             if config[:hosts]
                 config[:hosts].each { |host| run name, config[:cmd], host }
@@ -35,26 +37,31 @@ class Updater
                 run name, config[:cmd]
             end
         end
+
+        puts
+        puts "Upper finished."
     end
 
 private
-    def log(label, msg)
-        puts format "[%s] %s", label, msg
+    def log(msg, prefix=nil)
+        prefix = " " if prefix.nil?
+        puts " #{prefix} #{msg}"
     end
 
     def run(name, cmd, host=nil)
         label = name
 
-        log label, "Updating"
-        log label, "Command: #{cmd}" if @verbose
+        puts
+        log "Updating #{name}", "-"
+        log "Command: #{cmd}" if @verbose
     
         result = (if host.nil? then `#{cmd}` else `ssh #{host} "#{cmd}"` end).strip
 
-        log label, "ERROR while updating" unless $?.success?
+        log "Error", "*" unless $?.success?
         
-        result = "." if result == ""
+        result = "OK." if result == ""
 
-        log label, result
+        log result
     end
 end
 
