@@ -57,9 +57,11 @@ private
     
         result = (if host.nil? then `#{cmd}` else `ssh #{host} "#{cmd}"` end).strip
 
-        log "Error", "*" unless $?.success?
-        
-        result = "OK." if result == ""
+        if $?.success?
+            result = "OK." if result == ""
+        else
+            log "Error", "!" 
+        end
 
         log result
     end
