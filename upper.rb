@@ -29,7 +29,9 @@ class Updater
     end
 
     def start!
-        puts "Starting updates"
+        puts "================================================================================"
+        puts "   Starting updates"
+        puts "================================================================================"
 
         @tasks.each do |name, config|
             if config[:hosts]
@@ -38,9 +40,6 @@ class Updater
                 run name, config[:cmd]
             end
         end
-
-        puts
-        puts "Upper finished."
     end
 
 private
@@ -50,21 +49,22 @@ private
     end
 
     def run(name, cmd, host=nil)
-        puts
-        log "Updating #{name}", "-"
+        log "Updating #{name}", "*"
         log "Command: #{cmd}" if @verbose
     
         whole_cmd = (if host.nil? then cmd else `ssh #{host} "#{cmd}"` end).strip
 
-        Open3.popen2(whole_cmd) { |stdin,stdout| stdout.each_line { |line| $stdout.puts line.strip } }
+        Open3.popen3(whole_cmd) do |stdin, stdout, stderr, wait_thr|
+            stdin.close
 
-        if $?.success?
-            result = "OK." if result == ""
-        else
-            log "Error", "!" 
+            stdout.each_line do |line|
+                log "> #{line.strip}"
+            end
+
+            unless wait_thr.value.success?
+                log "Error", "!" 
+            end
         end
-
-        log result
     end
 end
 
