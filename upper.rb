@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'json'
+require 'open3'
 require 'optparse'
 
 # TODO: config option to specify command which lets check if update was executed or not (and what was updated at all)
@@ -49,13 +50,13 @@ private
     end
 
     def run(name, cmd, host=nil)
-        label = name
-
         puts
         log "Updating #{name}", "-"
         log "Command: #{cmd}" if @verbose
     
-        result = (if host.nil? then `#{cmd}` else `ssh #{host} "#{cmd}"` end).strip
+        whole_cmd = (if host.nil? then cmd else `ssh #{host} "#{cmd}"` end).strip
+
+        Open3.popen2(whole_cmd) { |stdin,stdout| stdout.each_line { |line| $stdout.puts line.strip } }
 
         if $?.success?
             result = "OK." if result == ""
