@@ -29,9 +29,9 @@ class Updater
     end
 
     def start!
-        puts "================================================================================"
-        puts "   Starting updates"
-        puts "================================================================================"
+        # puts "================================================================================"
+        puts ">> Starting updates"
+        # puts "================================================================================"
 
         @tasks.each do |name, config|
             if config[:hosts]
@@ -49,7 +49,7 @@ private
     end
 
     def run(name, cmd, host=nil)
-        log "Updating #{name}", "*"
+        log "Updating #{name}", "="
         log "Command: #{cmd}" if @verbose
     
         whole_cmd = (if host.nil? then cmd else `ssh #{host} "#{cmd}"` end).strip
@@ -58,7 +58,7 @@ private
             stdin.close
 
             stdout.each_line do |line|
-                log "> #{line.strip}"
+                log "#{line.strip}", "|"
             end
 
             unless wait_thr.value.success?
